@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>توب 10</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#efe9db;--card:#f9f6ee;--ink:#2a2142;--mut:#7d7691;--acc:#5a2fc2;--accs:#e4dcf8;--ok:#f0b429;--oks:#fcefc7;--bad:#d23b3b;--line:#d9d1bd;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1530;--card:#251f42;--ink:#f1ecff;--mut:#a29bc0;--acc:#b39dff;--accs:#382f66;--ok:#f5c040;--oks:#3e3722;--bad:#ff7a7a;--line:#3d3668;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1a1530;--card:#251f42;--ink:#f1ecff;--mut:#a29bc0;--acc:#b39dff;--accs:#382f66;--ok:#f5c040;--oks:#3e3722;--bad:#ff7a7a;--line:#3d3668;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Tajawal",system-ui,sans-serif;min-height:100vh}
+main{max-width:560px;margin:0 auto;padding:18px 16px 40px}
+h1{margin:0;text-align:center;font-size:40px;font-weight:800;line-height:1.1}
+h1 span{border-bottom:5px solid var(--ok)}
+.sub{text-align:center;color:var(--mut);margin:6px 0 16px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;font-size:21px;font-weight:800}
+form{display:flex;gap:8px;margin:14px 0 10px;border:2px solid var(--acc);border-radius:26px;padding:4px;background:var(--card)}
+input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:17px;padding:8px 14px;outline:none}
+button{font:inherit;font-weight:700;border:0;border-radius:22px;padding:8px 20px;background:var(--acc);color:#fff;cursor:pointer}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button{color:#06131f}}
+:root[data-theme="dark"] button{color:#06131f}
+button:focus-visible,input:focus-visible{outline:3px solid var(--ok);outline-offset:2px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:6px 2px 12px;font-size:14px;color:var(--mut)}
+.lives{display:flex;gap:4px;align-items:center}
+.l{width:16px;height:16px;border-radius:50%;border:2px solid var(--acc);display:grid;place-items:center;font-size:11px;color:#fff;font-weight:800}
+.l.x{background:var(--bad);border-color:var(--bad)}
+.prog{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.s{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-height:50px}
+.n{flex:none;width:30px;height:30px;border-radius:9px;background:var(--accs);color:var(--acc);display:grid;place-items:center;font-weight:800}
+.t{font-weight:700;color:var(--mut);letter-spacing:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.s.f{background:var(--oks);border-color:var(--ok)}
+.s.f .n{background:var(--ok);color:#241f3a}
+.s.f .t{color:var(--ink);letter-spacing:0}
+.s.m .t{color:var(--bad);letter-spacing:0}
+.s.pop{animation:p .35s}
+@keyframes p{40%{transform:scale(1.04)}}
+@media (prefers-reduced-motion:reduce){.s.pop{animation:none}}
+.msg{min-height:26px;text-align:center;font-weight:700;margin:2px 0 8px}
+.msg.e{color:var(--bad)}.msg.g{color:var(--acc)}
+.end{text-align:center;margin-top:18px}
+.end h2{margin:0 0 4px;font-size:26px}
+.end p{color:var(--mut);margin:0 0 14px}
+.tp{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
+.tp button{background:var(--accs);color:var(--acc);padding:6px 14px;font-size:14px}
+:root:not([data-theme="light"]) .tp button{color:var(--acc)}
+.tp button[aria-pressed="true"]{background:var(--acc);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tp button[aria-pressed="true"]{color:#06131f}}
+:root[data-theme="dark"] .tp button[aria-pressed="true"]{color:#06131f}
+main{position:relative}
+#sn{position:absolute;top:14px;left:14px;padding:6px 10px;background:var(--accs);color:var(--ink)}
+.hide{display:none}
+@media (max-width:360px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<button type="button" id="sn" aria-label="كتم الصوت">🔊</button>
+<h1>توب <span>10</span></h1>
+<p class="sub">اكتشف العشرة قبل ما تخسر ٦ محاولات</p>
+
+<div class="q" id="q"></div>
+<form id="f" autocomplete="off"><input id="i" placeholder="اكتب إجابتك..." aria-label="إجابتك" enterkeyhint="send"><button>خمّن</button></form>
+<div class="bar"><span id="cnt"></span><div class="prog"><i id="pg"></i></div><span class="lives" id="lv"></span></div>
+<div class="msg" id="m" aria-live="polite"></div>
+<div class="grid" id="g"></div>
+<div class="end hide" id="end"><h2 id="eh"></h2><p id="ep"></p><button id="nx">🎲 موضوع عشوائي</button></div>
+</main>
+<script>
+const D=[
+{q:"أشهر 10 أفلام ديزني وبيكسار",a:[["توي ستوري","قصة لعبة","toy story"],["فروزن","frozen","ملكة الثلج"],["الأسد الملك","lion king","الاسد الملك"],["علاء الدين","aladdin","علاء الدين والمصباح السحري"],["الجميلة والوحش","beauty and the beast"],["موانا","moana"],["البحث عن نيمو","نيمو","finding nemo"],["كوكو","coco"],["حورية البحر","ذا ليتل ميرميد","the little mermaid","ارييل"],["أب","up","انطلاق"]]},
+{q:"أشهر 10 مسلسلات أجنبية",a:[["بريكنج باد","breaking bad","بريكينج باد"],["صراع العروش","game of thrones","قيم اوف ثرونز"],["فريندز","friends"],["سترينجر ثينغز","سترانجر ثينجز","stranger things"],["البيت الورقي","لا كاسا دي بابل","money heist"],["لعبة الحبار","squid game","سكويد قيم"],["ذا أوفيس","the office","ذا اوفيس"],["بيكي بلايندرز","peaky blinders"],["بريزن بريك","prison break","بريزون بريك"],["ذا ويتشر","the witcher","ويتشر"]]},
+{q:"أشهر 10 مطاعم وجبات سريعة",a:[["ماكدونالدز","ماكدونالد","ماك","mcdonalds"],["كنتاكي","kfc","كي اف سي"],["برجر كنج","burger king"],["بيتزا هت","pizza hut"],["دومينوز","دومينو بيتزا","dominos"],["صب واي","subway"],["هارديز","hardees"],["البيك","البيك","albaik"],["كودو","kudu"],["هرفي","herfy"]]},
+{q:"أشهر 10 مدن سعودية",a:[["الرياض"],["جدة"],["مكة","مكة المكرمة","مكه"],["المدينة المنورة","المدينة","المدينه"],["الدمام"],["الخبر"],["الطائف"],["أبها","ابها"],["تبوك"],["العلا","العلا"]]},
+{q:"أشهر 10 أندية كرة قدم في العالم",a:[["ريال مدريد","real madrid","الريال"],["برشلونة","barcelona","برسا"],["مانشستر يونايتد","man united","manchester united","يونايتد"],["ليفربول","liverpool"],["بايرن ميونخ","bayern","بايرن"],["يوفنتوس","juventus","يوفي"],["تشيلسي","chelsea"],["أرسنال","ارسنال","arsenal"],["مانشستر سيتي","man city","manchester city","سيتي"],["ميلان","ac milan","اي سي ميلان"]]},
+{q:"أشهر 10 ماركات أزياء وأحذية",a:[["نايكي","nike"],["أديداس","اديداس","adidas"],["بوما","puma"],["زارا","zara"],["غوتشي","جوتشي","gucci"],["لويس فيتون","louis vuitton","فيتون"],["شانيل","chanel"],["ليفايز","levis","levi's"],["ريبوك","reebok"],["نيو بالانس","new balance"]]},
+{q:"أشهر 10 حيوانات مفترسة",a:[["الأسد","اسد","lion"],["النمر","نمر","tiger"],["الفهد","فهد","شيتا","cheetah"],["الذئب","ذئب","wolf"],["الدب","دب","bear"],["التمساح","تمساح","crocodile"],["القرش","قرش","shark"],["النسر","نسر","eagle"],["الضبع","ضبع","hyena"],["الصقر","صقر","falcon"]]},
+{q:"أشهر 10 ماركات هواتف",a:[["أبل","ابل","آيفون","ايفون","apple","iphone"],["سامسونج","samsung","سامسونغ"],["هواوي","huawei"],["شاومي","xiaomi"],["أوبو","oppo","اوبو"],["ريلمي","realme"],["جوجل","بيكسل","google pixel","pixel","google"],["ون بلس","oneplus","وان بلس"],["سوني","sony"],["نوكيا","nokia"]]},
+{q:"أشهر 10 شركات تقنية",a:[["أبل","ابل","apple"],["مايكروسوفت","microsoft","مايكروسافت"],["جوجل","google","قوقل"],["أمازون","امازون","amazon"],["ميتا","فيسبوك","meta","facebook"],["تسلا","tesla"],["إنفيديا","انفيديا","nvidia"],["سامسونج","samsung","سامسونغ"],["نتفليكس","netflix"],["سوني","sony"]]},
+{q:"أشهر 10 ألعاب طاولة وورق",a:[["الشطرنج","شطرنج","chess"],["مونوبولي","monopoly","المونوبولي"],["بلوت","البلوت"],["الطاولة","طاولة","نرد","backgammon"],["الدومينو","دومينو","domino"],["أونو","اونو","uno"],["سكرابل","scrabble"],["ليدو","ludo"],["جنجا","jenga","جينجا"],["الشدة","شدة","الكوتشينة","كوتشينة","الورق"]]},
+{q:"أشهر 10 رياضات في العالم",a:[["كرة القدم","كورة","football","soccer"],["كرة السلة","سلة","basketball"],["التنس","تنس","tennis"],["الكريكيت","كريكيت","cricket"],["الجولف","جولف","golf"],["كرة الطائرة","الكرة الطائرة","طائرة","volleyball"],["الملاكمة","ملاكمة","boxing"],["البيسبول","بيسبول","baseball"],["الفورمولا 1","فورمولا","فورمولا ون","f1","formula 1"],["السباحة","سباحة","swimming"]]},
+{q:"أشهر 10 مشروبات غازية وطاقة",a:[["كوكاكولا","كوكا كولا","كوكا","coca cola","coke"],["بيبسي","pepsi"],["سفن أب","سفن اب","7up","7 up","seven up"],["سبرايت","sprite"],["فانتا","fanta"],["ميرندا","ميراندا","mirinda"],["ريد بول","redbull","red bull"],["مونستر","monster"],["دكتور بيبر","dr pepper"],["شويبس","schweppes"]]},
+{q:"أشهر 10 ألعاب موبايل",a:[["ببجي موبايل","ببجي","pubg mobile","pubg"],["كلاش أوف كلانس","كلاش اوف كلانس","كلاش","clash of clans","coc"],["كاندي كراش","candy crush"],["صب واي سيرفرز","سبواي","subway surfers"],["فري فاير","free fire"],["كلاش رويال","clash royale"],["أمونج أس","among us","امونج اس"],["أنجري بيردز","انجري بيردز","angry birds"],["تمبل ران","temple run"],["كول أوف ديوتي موبايل","كود موبايل","call of duty mobile","cod mobile"]]}
+];
+
+const $=id=>document.getElementById(id);
+const AR="٠١٢٣٤٥٦٧٨٩";
+const norm=s=>s.toLowerCase().replace(/[\u064B-\u065F\u0640]/g,"").replace(/[أإآٱ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه").replace(/ؤ/g,"و").replace(/ئ/g,"ي").replace(/^ال/,"").replace(/\s+/g," ").trim();
+const nn=s=>s.split(" ").map(w=>w.replace(/^ال/,"")).join(" ");
+let cur=Math.floor(Math.random()*D.length),bag=[],found,lives,over,seen;
+function rnd(){let k;do{if(!bag.length)bag=D.map((_,i)=>i).sort(()=>Math.random()-.5);k=bag.pop()}while(k===cur&&D.length>1);return k}
+let AC,mute=false;
+function tn(f,t,d,ty,v){const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=f;const s=AC.currentTime+t;g.gain.setValueAtTime(0.0001,s);g.gain.exponentialRampToValueAtTime(v,s+0.02);g.gain.exponentialRampToValueAtTime(0.0001,s+d);o.connect(g);g.connect(AC.destination);o.start(s);o.stop(s+d+0.05)}
+function sfx(k){if(mute)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();
+if(k==="ok"){tn(660,0,.18,"sine",.25);tn(990,.1,.3,"sine",.25)}
+else if(k==="bad"){tn(180,0,.3,"sawtooth",.15);tn(130,.12,.3,"sawtooth",.15)}
+else if(k==="win"){[523,659,784,1046,1318].forEach((f,i)=>tn(f,i*.12,.35,"triangle",.25))}
+else{[392,330,262,196].forEach((f,i)=>tn(f,i*.18,.4,"triangle",.2))}}catch(e){}}
+function num(n){return String(n).split("").map(d=>AR[d]).join("")}
+function pickTopics(){const t=$("tp");t.innerHTML="";const r=document.createElement("button");r.type="button";r.textContent="🎲 عشوائي";r.onclick=()=>{cur=rnd();start()};t.appendChild(r);D.forEach((d,k)=>{const b=document.createElement("button");b.type="button";b.textContent=d.q.replace(/^(أعظم|أكبر|أشهر) 10 /,"");b.setAttribute("aria-pressed",k===cur);b.onclick=()=>{cur=k;start()};t.appendChild(b)})}
+function start(){const d=D[cur];for(let k=d.a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[d.a[k],d.a[j]]=[d.a[j],d.a[k]]}found=new Set();seen=new Set();lives=6;over=false;
+$("q").textContent=d.q;$("m").textContent="";$("m").className="msg";$("end").classList.add("hide");$("i").disabled=false;$("i").value="";
+$("g").innerHTML="";d.a.forEach((_,k)=>{const s=document.createElement("div");s.className="s";s.id="s"+k;s.innerHTML='<span class="n">'+num(k+1)+'</span><span class="t">؟؟؟؟؟؟</span>';$("g").appendChild(s)});
+draw();$("i").focus()}
+function draw(){$("cnt").textContent="وجدت "+num(found.size)+" من ١٠";$("pg").style.width=found.size*10+"%";
+$("lv").innerHTML="";for(let k=0;k<6;k++){const l=document.createElement("span");l.className="l"+(k<6-lives?" x":"");l.textContent=k<6-lives?"×":"";$("lv").appendChild(l)}}
+function match(v){const x=nn(norm(v));if(x.length<2)return -1;
+return D[cur].a.findIndex(al=>al.some(a=>{const y=nn(norm(a));return y===x||(x.length>=3&&y.length>=4&&(y.includes(x)&&x.length>=y.length-2))}))}
+function finish(win){over=true;$("i").disabled=true;
+if(!win)D[cur].a.forEach((al,k)=>{if(!found.has(k)){const s=$("s"+k);s.classList.add("m");s.querySelector(".t").textContent=al[0]}});
+$("eh").textContent=win?"ممتاز! جبت العشرة":"انتهت المحاولات";
+$("ep").textContent=win?"أخطأت "+num(6-lives)+" مرة فقط":"وجدت "+num(found.size)+" من ١٠. الباقي بالأحمر";
+$("end").classList.remove("hide");$("nx").focus()}
+$("f").onsubmit=e=>{e.preventDefault();if(over)return;const v=$("i").value;if(!v.trim())return;$("i").value="";
+const k=match(v),m=$("m");
+if(k>=0){if(found.has(k)){m.textContent="هذي طلعت قبل";m.className="msg g";return}
+found.add(k);sfx(found.size===10?"win":"ok");const s=$("s"+k);s.classList.add("f","pop");s.querySelector(".t").textContent=D[cur].a[k][0];m.textContent="صح!";m.className="msg g";draw();
+if(found.size===10)finish(true)}
+else{const key=norm(v);if(seen.has(key)){m.textContent="جرّبتها وهي خطأ";m.className="msg e";return}
+seen.add(key);lives--;sfx(lives===0?"lose":"bad");m.textContent="خطأ: "+v.trim();m.className="msg e";draw();if(lives===0)finish(false)}};
+$("sn").onclick=()=>{mute=!mute;$("sn").textContent=mute?"🔇":"🔊";$("sn").setAttribute("aria-label",mute?"تشغيل الصوت":"كتم الصوت");if(!mute)sfx("ok")};
+$("nx").onclick=()=>{cur=rnd();start()};
+start();
+</script>
+</body>
+</html>
